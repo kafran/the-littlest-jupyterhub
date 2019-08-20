@@ -171,7 +171,7 @@ def ensure_jupyterlab_extensions():
     extensions = [
         '@jupyterlab/hub-extension',
         '@jupyter-widgets/jupyterlab-manager',
-        '@jupyterlab/git'
+        '@jupyterlab/git',
     ]
     utils.run_subprocess([
         os.path.join(USER_ENV_PREFIX, 'bin/jupyter'),
@@ -199,7 +199,7 @@ def ensure_jupyterhub_package(prefix):
         'build-essential'
     ])
     conda.ensure_pip_packages(prefix, [
-        'pycurl==7.43.*'
+        'pycurl'
     ])
 
     conda.ensure_pip_packages(prefix, [
@@ -265,7 +265,7 @@ def ensure_user_environment(user_requirements_txt_file):
         'ipywidgets',
         # Pin tornado
         'tornado',
-        'nbdime'
+        'nbdime',
     ])
 
     if user_requirements_txt_file:
