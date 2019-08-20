@@ -103,7 +103,7 @@ def ensure_conda_packages(prefix, packages):
     # FIXME: raise different exception when using
     raw_output = subprocess.check_output(conda_executable + [
         'install',
-        #'-c', 'conda-forge',  # Make customizable if we ever need to
+        '-c', 'defaults',  # Make customizable if we ever need to
         '--json',
         '--prefix', abspath
     ] + packages).decode()
