@@ -170,7 +170,8 @@ def ensure_jupyterlab_extensions():
     """
     extensions = [
         '@jupyterlab/hub-extension',
-        '@jupyter-widgets/jupyterlab-manager'
+        '@jupyter-widgets/jupyterlab-manager',
+        '@jupyterlab/git'
     ]
     utils.run_subprocess([
         os.path.join(USER_ENV_PREFIX, 'bin/jupyter'),
@@ -202,14 +203,14 @@ def ensure_jupyterhub_package(prefix):
     ])
 
     conda.ensure_pip_packages(prefix, [
-        'jupyterhub==1.0.0',
-        'jupyterhub-dummyauthenticator==0.3.1',
-        'jupyterhub-systemdspawner==0.13',
-        'jupyterhub-firstuseauthenticator==0.12',
-        'jupyterhub-nativeauthenticator==0.0.4',
-        'jupyterhub-ldapauthenticator==1.2.2',
-        'jupyterhub-tmpauthenticator==0.6',
-        'oauthenticator==0.8.2',
+        'jupyterhub',
+        'jupyterhub-dummyauthenticator',
+        'jupyterhub-systemdspawner',
+        'jupyterhub-firstuseauthenticator',
+        'jupyterhub-nativeauthenticator',
+        'jupyterhub-ldapauthenticator',
+        'jupyterhub-tmpauthenticator',
+        'oauthenticator',
     ])
     traefik.ensure_traefik_binary(prefix)
 
@@ -246,24 +247,25 @@ def ensure_user_environment(user_requirements_txt_file):
 
     conda.ensure_conda_packages(USER_ENV_PREFIX, [
         # Conda's latest version is on conda much more so than on PyPI.
-        'conda==4.5.8'
+        'conda'
     ])
 
     conda.ensure_pip_packages(USER_ENV_PREFIX, [
         # JupyterHub + notebook package are base requirements for user environment
-        'jupyterhub==1.0.0',
-        'notebook==5.7.8',
+        'jupyterhub',
+        'notebook',
         # Install additional notebook frontends!
-        'jupyterlab==0.35.4',
-        'nteract-on-jupyter==2.0.7',
+        'jupyterlab',
+        'nteract-on-jupyter',
         # nbgitpuller for easily pulling in Git repositories
-        'nbgitpuller==0.6.1',
+        'nbgitpuller',
         # nbresuse to show people how much RAM they are using
-        'nbresuse==0.3.0',
+        'nbresuse',
         # Most people consider ipywidgets to be part of the core notebook experience
-        'ipywidgets==7.4.2',
+        'ipywidgets',
         # Pin tornado
-        'tornado<6.0',
+        'tornado',
+        'nbdime'
     ])
 
     if user_requirements_txt_file:
